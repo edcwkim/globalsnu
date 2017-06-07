@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static compress widget_tweaks %}
+
+{% block content %}
+<div class="page-form-wrapper mainland">
+  <div class="container-fluid">
+    <h1 class="write"><a href="{{ object.get_absolute_url }}" class="uncolor undecorate">{{ object.title }}</a> – 편집하기</h1>
+    <div class="row">
+      <div class="col-sm-6 col-sm-push-6">
+        <div class="guide">
+          <a href="{% url 'wiki:guide' %}" class="uncolor" target="_blank">1분 걸리는 <span class="strong">문서 작성 가이드</span> 보기</a>
+        </div>
+        <form action="" method="post" class="page-form">{% csrf_token %}
+          <div class="form-group{% if form.content.errors %} has-error{% endif %}">
+            {% render_field form.content class+="form-control" placeholder="본문" %}
+            {{ form.content.errors }}
+          </div>
+          <div class="form-group{% if form.edit_summary.errors %} has-error{% endif %}">
+            {% render_field form.edit_summary class+="form-control" placeholder="편집 요약" %}
+            {{ form.edit_summary.errors }}
+          </div>
+          <div class="checkbox">
+            <label for="{{ form.is_school.id_for_label }}">
+              {{ form.is_school }} {{ form.is_school.label }}
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default btn-block">편집하기</button>
+        </form>
+      </div>
+      <div class="col-sm-6 col-sm-pull-6">
+        <div class="preview">미리보기</div>
+        <div class="page-wrapper plain">
+          <div class="detail">
+            <div class="content">
+              <div class="md2html"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% compress js %}
+<script src="{% static 'js/marked.js' %}"></script>
+<script src="{% static 'js/marked_script.js' %}"></script>
+{% endcompress %}
+{% endblock %}

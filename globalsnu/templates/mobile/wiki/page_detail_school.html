@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load wiki static %}
+
+{% block body_class %}no-padding-with-nav{% if user_liked %} nav-heart-red{% endif %}{% endblock %}
+{% block content %}
+<div class="page-wrapper mainland">
+  <div class="container">
+    <div class="banner">
+      <h1>{{ page.title }}</h1>
+      <div class="banner-meta {% if page.school.country %}country{% else %}none{% endif %}">
+        {% if page.school.country %}
+        <img src="{% static page.school.country.get_flag_path %}" class="flag">{{ page.school.country.name }}<a href="#edit-country" class="uncolor undecorate edit">
+          <img src="{% static 'img/edit_white.svg' %}" alt="수정하기">
+        </a>
+        {% else %}
+        <a href="#edit-country" class="uncolor undecorate"><img src="{% static 'img/plus_circle.svg' %}">소재 국가</a>
+        {% endif %}
+      </div>
+      <div class="banner-meta {% if page.school.schltype %}type{% else %}none{% endif %}">
+        {% if page.school.schltype %}
+        <img src="{% static 'img/institute.svg' %}" class="institute">{{ page.school.schltype }}<a href="#edit-type" class="uncolor undecorate edit">
+          <img src="{% static 'img/edit_white.svg' %}" alt="수정하기">
+        </a>
+        {% else %}
+        <a href="#edit-type" class="uncolor undecorate"><img src="{% static 'img/plus_circle.svg' %}">대학교 분류</a>
+        {% endif %}
+      </div>
+      <div class="banner-meta {% if page.school.website %}website{% else %}none{% endif %}">
+        {% if page.school.website %}
+        <img src="{% static 'img/link_color.svg' %}" class="link"><a href="{{ page.school.website }}" class="uncolor">{{ page.school.get_short_url }}</a><a href="#edit-website" class="edit">
+          <img src="{% static 'img/edit_white.svg' %}" alt="수정하기">
+        </a>
+        {% else %}
+        <a href="#edit-website" class="uncolor undecorate"><img src="{% static 'img/plus_circle.svg' %}">사이트 주소</a>
+        {% endif %}
+      </div>
+      <div class="like{% if user_liked %} liked{% endif %}">
+        <span class="plus">+</span>
+        <span class="minus">-</span>
+      </div>
+    </div>
+    {% if page.school.logo %}
+    <div class="logo-wrapper">
+      <div class="logo" style="background-image: url('{{ page.school.logo.url }}');"></div>
+    </div>
+    {% endif %}
+    <div class="content">
+      {% if page.content %}
+      {{ page.content|markdown }}
+      {% else %}
+      <p>본문이 등록되지 않았습니다.</p>
+      {% endif %}
+    </div>
+    <div class="tag-wrapper">
+      {% for tag in page.school.tags.all %}<span class="tag">#<span class="name">{{ tag.name }}</span> <span class="remove"></span></span>{% empty %}<span class="empty">태그 추가하기</span>{% endfor %}
+      <form class="tag-form" onsubmit="return false;">
+        <input type="text" class="ac-tag">
+      </form>
+      <span class="trigger"></span>
+    </div>
+    <hr>
+    <div class="essay-wrapper">
+      <div class="essay-header">수기</div>
+      {% if page.essays %}
+      <ul>
+        {% for essay in page.essays.all %}
+        <li class="essay{% if user in essay.likers.all %} liked{% endif %}">
+          <a href="{{ essay.get_absolute_url }}" class="uncolor">{{ essay.title }}</a>
+          <span class="icon"></span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if page.school.reports %}
+      <ul>
+        {% for report in page.school.reports.all %}
+        <li class="essay oia">
+          <a href="{{ report.get_absolute_url }}" target="_blank" class="uncolor">{{ report.title }}</a>
+          <span class="icon"></span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="post">
+        <a href="{% url 'wiki:essay_create' page.title_for_url %}">등록하기</a>
+      </div>
+    </div>
+    <div class="row">
+      <div id="map"></div>
+      <div class="tools">
+        <a href="{% url 'wiki:page_update' page.title_for_url %}" class="uncolor">편집</a>
+        &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'wiki:page_update' page.title_for_url %}" class="uncolor">토론</a>
+        &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'wiki:page_history' page.title_for_url %}" class="uncolor">역사</a>
+      </div>
+    </div>
+  </div>
+  <div id="edit-country" class="overlay-modal">
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <form class="row" action="{% url 'univ:school_update' 'country' %}" method="post">{% csrf_token %}
+      <input type="text" name="pk" value="{{ page.school.pk }}" hidden>
+      <div class="col-xs-6">
+        {% for continent in continents_left %}
+        <h3>{{ continent.name }}</h3>
+        <ul>
+          {% for country in continent.countries %}
+          <li>
+            <button type="submit" name="country_pk" value="{{ country.pk }}">
+              <img src="{% static country.get_flag_path %}">
+              {{ country.name }}
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endfor %}
+      </div>
+      <div class="col-xs-6">
+        {% for continent in continents_right %}
+        <h3>{{ continent.name }}</h3>
+        <ul>
+          {% for country in continent.countries %}
+          <li>
+            <button type="submit" name="country_pk" value="{{ country.pk }}">
+              <img src="{% static country.get_flag_path %}">
+              {{ country.name }}
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endfor %}
+      </div>
+    </form>
+  </div>
+  <div id="edit-type" class="overlay-modal">
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <form class="row" action="{% url 'univ:school_update' 'type' %}" method="post">{% csrf_token %}
+      <input type="text" name="pk" value="{{ page.school.pk }}" hidden>
+      <h3>대학교 분류</h3>
+      <input type="text" name="school_type" placeholder="국(공)립대학 / 사립대학 / …" maxlength="30">
+      <button type="submit">✔</button>
+    </form>
+  </div>
+  <div id="edit-website" class="overlay-modal">
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <form class="row" action="{% url 'univ:school_update' 'website' %}" method="post">{% csrf_token %}
+      <input type="text" name="pk" value="{{ page.school.pk }}" hidden>
+      <h3>사이트 주소</h3>
+      <input type="url" name="website" placeholder="https://" maxlength="200">
+      <button type="submit">✔</button>
+    </form>
+  </div>
+  <a id="overlay" href="#"></a>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgLJJWSUU17Nh73FELL-uV_a1UP3wn82g&libraries=places&callback=initMap"></script>
+<script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: {{ page.school.latitude }},
+      lng: {{ page.school.longitude }}
+    },
+    zoom: 15
+  });
+}
+</script>
+{% endblock %}

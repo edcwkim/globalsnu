@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+
+{% block body_class %}no-padding-with-nav{% endblock %}
+{% block content %}
+<div class="settings-wrapper">
+  <div class="container">
+    <div class="globalsnu-form-theme">
+      <div class="row zeroth">
+        <div class="col-xs-5 col left">
+          {% if not user.changed_nickname %}
+          <a href="#nickname" class="uncolor undecorate">닉네임 변경하기</a>
+          {% else %}
+          닉네임 변경하기
+          {% endif %}
+        </div>
+        <div class="col-xs-7 col right">
+          {{ user.nickname }}
+        </div>
+      </div>
+      <form action="" method="post" class="settings-form">{% csrf_token %}
+        <div class="row first">
+          <div class="col-xs-5 col left">
+            <label for="form.old_password.id_for_label">{{ form.old_password.label }}</label>
+            <a href="{% url 'password_reset' %}" target="_blank">
+              <img src="{% static 'img/find_password.svg' %}" alt="비밀번호를 잊어 버리셨나요?">
+            </a>
+          </div>
+          <div class="col-xs-7 col right{% if form.old_password.errors %} has-error{% endif %}">
+            {{ form.old_password }}
+          </div>
+        </div>
+        <div class="row second">
+          <div class="col-xs-5 col left">
+            <label for="form.new_password1.id_for_label">{{ form.new_password1.label }}</label>
+          </div>
+          <div class="col-xs-7 col right{% if form.new_password1.errors %} has-error{% endif %}">
+            {{ form.new_password1 }}
+            <div class="help">
+              {{ form.new_password1.help_text|safe }}
+            </div>
+          </div>
+        </div>
+        <div class="row third">
+          <div class="col-xs-5 col left">
+            <label for="form.new_password2.id_for_label">{{ form.new_password2.label }}</label>
+          </div>
+          <div class="col-xs-7 col right{% if form.new_password2.errors %} has-error{% endif %}">
+            {{ form.new_password2 }}
+          </div>
+        </div>
+        <div class="row fourth">
+          <div class="col-xs-5 col left">
+            <button type="submit" class="btn">비밀번호 변경하기</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-xs-5 deactivate">
+        <a href="#deactivate" class="uncolor undecorate">회원탈퇴</a>
+      </div>
+    </div>
+      <div class="form-group">
+        {{ form.old_password.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.new_password1.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.new_password2.errors }}
+      </div>
+  </div>
+</div>
+<div id="nickname" class="overlay-modal">
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <form action="{% url 'nickname_change' %}" method="post">{% csrf_token %}
+    <h3>닉네임을 변경하시겠어요?</h3>
+    <p>닉네임은 글로벌스누에서 회원님을 식별하기 위한 이름으로, 비밀번호와 다르게 <b>한 번만</b> 변경이 가능합니다. 닉네임을 변경하더라도 변경 전의 위키 편집 내역에는 기존의 닉네임이 표시됩니다.</p>
+    {% render_field nickname_form.nickname placeholder="새 닉네임을 입력해 주세요." %}
+    <button type="submit" class="text-danger">변경하기</button>
+  </form>
+</div>
+<div id="deactivate" class="overlay-modal">
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <form action="{% url 'deactivate' %}" method="post">{% csrf_token %}
+    <h3>정말로 탈퇴하시겠어요? ☹</h3>
+    <p>탈퇴 후 다시 가입하시면 기존의 즐겨찾기와 편집 내역을 되찾으실 수 있습니다. 만약 모든 연결을 영구적으로 해제하고 싶으시다면, 탈퇴하신 다음 <a href="mailto:admin@globalsnu.com">admin@globalsnu.com</a>으로 메일을 보내 주시기 바랍니다.</p>
+    <input type="password" name="password" placeholder="비밀번호를 입력해 주세요.">
+    <button type="submit" class="text-danger">탈퇴하기</button>
+  </form>
+</div>
+<a id="overlay" href="#"></a>
+{% endblock %}

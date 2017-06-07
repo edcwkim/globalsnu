@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}no-padding{% endblock %}
+{% block content %}
+<div class="about">
+  <div id="intro">
+    <a href="{% url 'home' %}" class="logo">
+      <img src="{% static 'img/logo_nav.svg' %}">
+    </a>
+    <h1>Enhance your global experience.</h1>
+    <a href="#general" class="down">
+      <img src="{% static 'img/down_white.svg' %}">
+    </a>
+  </div>
+  <div id="general">
+    <h2>ABOUT</h2>
+    <img src="{% static 'img/about_about.svg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          <p>글로벌스누는 서울대학교에서 교환학생 혹은 스누인월드 프로그램을 준비하는 분들을 위한 정보 공유 사이트입니다. 교환학생, 스누인월드 프로그램에 지원해 보고 싶지만 어디서부터 준비해야 할지 모르셨던 분들, 관심 있는 지역의 학교, 나의 전공을 제공하는 학교들에 대해 더 알아보고 싶으신 분들, 소소하고 즐거운 수기를 읽어 보고 싶으신 분들, 또 그런 수기를 남겨 보고 싶으신 분들, 그리고 해외의 대학에 관심이 있는 학우분들을 위해 서울대학교와 협정을 체결한 모든 해외 대학들에 대한 정보를 담아내는 것이 저희의 목표입니다. 저희의 목표에 공감해 주시는 분들께서 남기시는 위키 한 줄, 수기 한 페이지가 모여 나와 다른 분들에게 더 큰 세계를 선물해 줄 것이라고 믿습니다. 더 많은 분들이 글로벌스누를 통해 세계를 향한 꿈을 키우고 이뤄 나가시길 바랍니다:)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="howitworks">
+    <h2>HOW IT WORKS</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <a href="{% url 'wiki:page_list' %}" class="uncolor undecorate" style="outline: none;">
+            <img src="{% static 'img/about_wiki.svg' %}">
+            <h3>위키</h3>
+          </a>
+          <p>글로벌스누의 핵심은 모두가 편집할 수 있는 <a class="uncolor" href="https://ko.wikipedia.org/wiki/위키">위키</a>에 있습니다. 학교에 대해, 국가에 대해 공유하고 싶은 정보가 있다면 해당 문서를 편집해 보세요. 마음에 드는 문서가 있다면 즐겨찾기에 추가하실 수 있습니다.</p>
+        </div>
+        <div class="col-sm-4">
+          <a href="{% url 'wiki:essay_list' %}" class="uncolor undecorate unoutline">
+            <img src="{% static 'img/about_essay.svg' %}">
+            <h3>수기</h3>
+          </a>
+          <p>위키는 모두가 함께 편집 권한을 갖는 글입니다. 자신의 경험을 더 자유롭게 공유하고 싶다면 수기를 작성해 보세요. 본인이 체험한 내용을 더 생생하게 전달할 수 있는 방법입니다.</p>
+        </div>
+        <div class="col-sm-4">
+          <a href="{% url 'manual' %}" class="uncolor undecorate unoutline">
+            <img src="{% static 'img/about_manual.svg' %}">
+            <h3>매뉴얼</h3>
+          </a>
+          <p>글로벌스누 팀에서 교환학생을 준비하는 학우분들을 위해 <a class="uncolor" href="{% url 'manual' %}">매뉴얼</a>을 준비했습니다. 출발 전과 도착 후에 체크해야 할 사항들이 각각 정리되어 있으니, 이를 참고해서 교환학생을 준비해 보세요!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="team">
+    <h2>TEAM</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-1 col-xs-6 member">
+          <span class="name">김도경</span>
+          <span class="major">디자인학부</span>
+        </div>
+        <div class="col-sm-4 col-xs-6 member">
+          <span class="name">김찬우</span>
+          <span class="major">컴퓨터공학부</span>
+          <a href="https://www.facebook.com/edcwkim" target="_blank">
+            <img src="{% static 'img/facebook.svg' %}" alt="facebook">
+          </a>
+        </div>
+        <div class="col-sm-3 col-xs-6 member">
+          <span class="name">김태훈</span>
+          <span class="major">전기·정보공학부</span>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1 col-xs-6 member">
+          <span class="name">박수진</span>
+          <span class="major">소비자아동학부</span>
+        </div>
+        <div class="col-sm-4 col-xs-6 member">
+          <span class="name">박종관</span>
+          <span class="major">화학생물공학부</span>
+          <a href="https://www.facebook.com/profile.php?id=100002529093313" target="_blank">
+            <img src="{% static 'img/facebook.svg' %}" alt="facebook">
+          </a>
+        </div>
+        <div class="col-sm-3 col-xs-6 member">
+          <span class="name">윤여은</span>
+          <span class="major">소비자아동학부</span>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1 col-xs-6 member">
+          <span class="name">홍지월</span>
+          <span class="major">디자인학부</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="detail">
+    <h2>CREDITS</h2>
+    <img src="{% static 'img/detail_inverse.png' %}" alt="디테일">
+    <p class="credit-heading">제58대 서울대학교 총학생회</p>
+    <p class="credit-heading">글로벌스누 TF</p>
+    <div class="container credits">
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 col-xs-6 role">팀장</div>
+        <div class="col-sm-3">윤여은</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 col-xs-6 role">컨텐츠</div>
+        <div class="col-sm-3">박수진 박종관</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 col-xs-6 role">디자인</div>
+        <div class="col-sm-3">김정현 홍지월</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 col-xs-6 role">개발</div>
+        <div class="col-sm-3">김찬우</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 col-xs-6 role">집행위원장</div>
+        <div class="col-sm-3">김도경</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 col-xs-6 role">총학생회장단</div>
+        <div class="col-sm-3">김보미 김민석</div>
+      </div>
+    </div>
+  </div>
+  <div id="contact">
+    <h2>CONTACT</h2>
+    <div>
+      <a href="mailto:admin@globalsnu.com" class="uncolor">admin@globalsnu.com</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block navbar %}{% include 'includes/navbar_public.html' %}{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-history mainland">
+  <div class="container">
+    <h1><a href="{{ page.get_absolute_url }}" class="uncolor undecorate">{{ page.title }}</a> – 역사</h1>
+    <ul>
+      {% for revision in revisions %}
+      <li><a href="{{ revision.get_absolute_url }}">#{{ revision.revision_number }} {{ revision.edit_summary }}</a> / {{ revision.editor_name }} / {{ revision.edited|date:"n월 j일" }} {{ revision.edited|time:"H:i" }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="favorites mainland">
+  <div class="container">
+    <h1>즐겨찾기</h1>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        {% for school, essays in schools_and_essays %}
+        <div class="school-with-essays">
+          <div class="school">
+            <h2 class="school-name">
+              <a href="{{ school.get_absolute_url }}" class="uncolor undecorate">{{ school.name }}</a>
+            </h2>
+            {% if school.country %}
+            <div class="school-country">
+              <img src="{% static school.country.get_flag_path %}">
+              {{ school.country.name }}
+            </div>
+            {% endif %}
+            {% if user in school.likers.all %}
+            <img src="{% static 'img/heart_yellow.svg' %}" alt="Liked" class="school-liked">
+            {% endif %}
+          </div>
+          <div class="essay-wrapper">
+            {% for essay in essays %}
+            <div class="essay">
+              <h3 class="essay-title">
+                <a href="{{ essay.get_absolute_url }}" class="uncolor undecorate">{{ essay.title }}</a>
+              </h3>
+              <img src="{% static 'img/heart_blue.svg' %}" alt="Liked" class="essay-liked">
+            </div>
+            {% empty %}
+            <div class="essay empty">
+              <h3 class="essay-title">스크랩한 수기가 없습니다.</h3>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% empty %}
+        즐겨찾기가 없습니다.
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

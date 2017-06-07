@@ -1,0 +1,13 @@
+Django < 1.12
+beautifulsoup4
+django-compressor
+django-haystack
+django-mobile
+django-widget-tweaks
+elasticsearch < 3
+lxml
+Markdown
+Pillow
+psycopg2
+requests
+slimit

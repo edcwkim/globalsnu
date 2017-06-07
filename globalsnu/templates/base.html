@@ -1,0 +1,70 @@
+{% load static compress %}<!DOCTYPE html>
+<!--[if lt IE 9]>      <html class="{{ flavour }} no-js lt-ie10 lt-ie9" lang="ko"> <![endif]-->
+<!--[if IE 9]>         <html class="{{ flavour }} no-js lt-ie10" lang="ko"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="{{ flavour }} no-js" lang="ko"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no{% block extra_viewport %}{% endblock %}">
+    <title>{% block title %}GlobalSNU{% endblock %}</title>
+    <meta name="description" content="글로벌스누와 함께 해외에서 공부해 보세요.">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#018790">
+    <meta name="apple-mobile-web-app-title" content="GlobalSNU">
+    <meta name="application-name" content="GlobalSNU">
+    <meta name="theme-color" content="#018790">
+    <meta property="og:site_name" content="GlobalSNU">
+    <meta property="og:title" content="글로벌스누">
+    <meta property="og:description" content="서울대 교환학생의 모든 정보">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://globalsnu.com/">
+    <meta property="og:image" content="http://globalsnu.com/logo.png">
+    <meta property="og:image:secure_url" content="https://globalsnu.com/logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1470">
+    <meta property="og:image:height" content="770">
+    <!--[if lt IE9]> <script>window.location = "http://outdatedbrowser.com/";</script> <![endif]>-->
+    {% compress js %}
+    <script defer src="{% static 'js/modernizr.js' %}"></script>
+    <script defer src="{% static 'js/iscroll.js' %}"></script>
+    <script defer src="{% static 'js/base.js' %}"></script>
+    {% endcompress %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% if flavour == 'full' %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.desktop.css' %}">
+    {% endcompress %}
+    {% else %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.mobile.css' %}">
+    {% endcompress %}
+    {% endif %}
+    {% block extra_css %}{% endblock %}
+    {% block analytics %}{% include 'includes/analytics.html' %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    {% block warning %}{% endblock %}
+    {% if messages %}
+    <div class="message-wrapper">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+        <div class="container">
+          {{ message }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% block header %}{% include 'includes/header.html' %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}{% include 'includes/footer.html' %}{% endblock %}
+    {% block navbar %}{% include 'includes/navbar.html' %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

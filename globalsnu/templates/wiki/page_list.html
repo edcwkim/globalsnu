@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="search-wrapper page recent-list mainland">
+  <div class="container">
+    <div class="heading">
+      <img src="{% static 'img/essay.svg' %}">
+      <h1>최근 편집된 문서</h1>
+    </div>
+    <ul class="result-wrapper">
+      {% for page in pages %}
+      <a href="{{ page.get_absolute_url }}" class="uncolor undecorate">
+        <li class="result">
+          <span class="name">{{ page.title }}</span>
+        </li>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wiki-guide mainland">
+  <div class="container">
+    <h1>문서 작성 가이드</h1>
+    <p class="nutshell">한줄요약: 글로벌스누는 <strong>위키</strong>와 <strong>수기</strong>를 중심으로 돌아갑니다. 위키는 마크다운 문법을 이용합니다!</p>
+    <h2>1. 위키가 뭔가요?</h2>
+    <p>위키는 <a href="https://www.wikipedia.org/" class="uncolor">위키백과</a>, <a href="https://namu.wiki/" class="uncolor">나무위키</a>와 같이 <strong>모두가 함께 편집하는 백과사전</strong>입니다. 학교에 대한 문서, 국가에 대한 문서를 새롭게 만들어도 되고, 기존에 있는 문서를 발전시켜도 됩니다. 여러분께서 작성해 주시는 한 줄 한 줄이 소중한 정보가 됩니다.</p>
+    <h2>2. 마크다운이 뭔가요?</h2>
+    <p><a href="https://guides.github.com/features/mastering-markdown/" class="uncolor">마크다운(Markdown)</a>은 <b>위키 문서를 작성하는 문법형식</b>입니다. 중요한 것 몇 가지만 짚고 가실게요!</p>
+    <div class="md">
+      <h1># 제목 1단계</h1>
+      <h2>## 제목 2단계</h2>
+      <h3>### 제목 3단계</h3>
+      <p class="em"><em>*이렇게 쓰면 글자가 기울어집니다*</em></p>
+      <p class="strong"><strong>**이렇게 쓰면 글자가 굵어집니다**</strong></p>
+      <p class="anchor">[<a href="https://fb.com/">이렇게 쓰면 링크가 됩니다</a>](https://fb.com/)</p>
+    </div>
+    <h2>3. 문서를 처음 만드는데, 무엇이 들어가면 좋을까요?</h2>
+    <p>어떻게 시작할지 막막하다면, 초기에 글로벌스누 팀에서 이용한 템플릿을 참고해 보세요.</p>
+    <p># 학교정보<br># 학과정보<br># 수업정보<br># 교외활동<br># 생활꿀팁: 주거, 식생활, 교통, 은행 계좌, 날씨, 치안, 주변 시설, 건강정보, 여행, 축제</p>
+    <h2>4. 수기는 뭔가요?</h2>
+    <p>수기는 <strong>좀 더 자유로운 형식으로 개인이 작성하고 소유하는 글</strong>입니다. 위키 문서가 생성되면, 문서 하단에 수기를 작성할 수 있는 화면이 나타납니다.</p>
+    <h3 class="create">
+      <a href="{% url 'wiki:page_create' %}" class="uncolor">위키 문서 만들기</a>
+    </h3>
+  </div>
+</div>
+{% endblock %}

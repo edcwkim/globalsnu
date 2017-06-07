@@ -1,0 +1,12 @@
+django_mobile/conf.py [33]
+"TEMPLATE_LOADERS" → "TEMPLATES[0]['OPTIONS']['loaders']"
+
+django_mobile/middleware.py [2]
+insert "from django.utils.deprecation import MiddlewareMixin"
+
+django_mobile/middleware.py [8,22]
+"(object)" → "(MiddlewareMixin)"
+
+django_mobile/middleware.py [48:49]
+def __init__(self, get_response=None):
+    super().__init__(get_response)

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}landing-body no-padding{% endblock %}
+{% block content %}
+<div class="landing-wrapper register verify">
+  <div class="blue-container">
+    <a href="{% url 'home' %}" class="logo-wrapper">
+      <img src="{% static 'img/logo_inverse.svg' %}" alt="GlobalSNU">
+    </a>
+  </div>
+  <form class="register-form">
+    <div class="register-input-set">
+      <h4>인증 메일이 발송되었습니다.</h4>
+      <h4>이 창을 닫으셔도 됩니다.</h4>
+      <h4 class="redirect"><a href="https://mail.snu.ac.kr/" class="uncolor">스누메일 바로가기</a></h4>
+    </div>
+    <div class="yellow-container">
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block navbar %}{% endblock %}

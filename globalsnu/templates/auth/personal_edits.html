@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="personal-edits mainland">
+  <div class="container">
+    <h1>편집내역</h1>
+    <h2>내가 편집한 문서</h2>
+    <ul>
+      {% for revision in revisions %}
+      <li><a href="{{ revision.get_absolute_url }}">{{ revision }}</a> – {{ revision.edited|date:"n월 j일" }} {{ revision.edited|time:"H:i" }}</li>
+      {% empty %}
+      <li>아직까지 편집한 문서가 없습니다.</li>
+      {% endfor %}
+    </ul>
+    <h2>내가 작성한 수기</h2>
+    <ul>
+      {% for essay in essays %}
+      <li><a href="{{ essay.get_absolute_url }}">{{ essay }}</a> – {{ essay.created|date:"n월 j일" }} {{ essay.created|time:"H:i" }}</li>
+      {% empty %}
+      <li>아직까지 작성한 수기가 없습니다.</li>
+      {% endfor %}
+  </ul>
+  </div>
+</div>
+{% endblock %}

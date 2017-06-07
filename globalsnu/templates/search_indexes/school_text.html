@@ -1,0 +1,2 @@
+{{ object.name }} {% if object.country %}({{ object.country.name }}){% endif %}
+{% for tag in object.tags.all %}{{ tag.name }} {% endfor %}

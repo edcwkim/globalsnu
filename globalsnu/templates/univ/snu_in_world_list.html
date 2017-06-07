@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="world mainland">
+  <div class="container">
+    <div class="heading">
+      <img src="{% static 'img/world.svg' %}">
+      <h1>SNU in World</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <div class="about">SNU in World 프로그램은 서울대학교 학생들이 세계 주요 국가들의 정치·경제·외교·문화에 대하여 공부하고, 해당 국가의 수도에 방문하여 이를 직접 체험하는 프로그램입니다. 여름방학에 7개(베이징/ 도쿄/ 런던/ 마드리드/ 베를린/ 모스크바/ 파리), 겨울방학에 2개(워싱턴/ 제네바)의 도시와 함께합니다.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'beijing' %}">
+          <div class="box">
+            <span class="city">Beijing</span>
+            <img src="{% static 'img/cities/beijing.svg' %}" class="enlarge-18px">
+            <span class="school">스누인베이징</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'berlin' %}">
+          <div class="box">
+            <span class="city">Berlin</span>
+            <img src="{% static 'img/cities/berlin.svg' %}">
+            <span class="school">스누인베를린</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'geneva' %}">
+          <div class="box">
+            <span class="city">Geneva</span>
+            <img src="{% static 'img/cities/geneva.svg' %}">
+            <span class="school">스누인제네바</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'london' %}">
+          <div class="box">
+            <span class="city">London</span>
+            <img src="{% static 'img/cities/london.svg' %}">
+            <span class="school">스누인런던</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'madrid' %}">
+          <div class="box">
+            <span class="city">Madrid</span>
+            <img src="{% static 'img/cities/madrid.svg' %}" class="enlarge-9px">
+            <span class="school">스누인마드리드</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'moscow' %}">
+          <div class="box">
+            <span class="city">Moscow</span>
+            <img src="{% static 'img/cities/moscow.svg' %}">
+            <span class="school">스누인모스크바</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'paris' %}">
+          <div class="box">
+            <span class="city">Paris</span>
+            <img src="{% static 'img/cities/paris.svg' %}">
+            <span class="school">스누인파리</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'tokyo' %}">
+          <div class="box">
+            <span class="city">Tokyo</span>
+            <img src="{% static 'img/cities/tokyo.svg' %}" class="enlarge-9px">
+            <span class="school">스누인도쿄</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 col-xs-6">
+        <a href="{% url 'univ:snu_in_world_detail' 'washington' %}">
+          <div class="box">
+            <span class="city">Washington</span>
+            <img src="{% static 'img/cities/washington.svg' %}" class="enlarge-18px">
+            <span class="school">스누인워싱턴</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

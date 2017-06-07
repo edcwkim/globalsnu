@@ -1,0 +1,10 @@
+{% extends 'base_error.html' %}
+
+{% block content %}
+<div class="main container">
+  <h1>Permission Denied</h1>
+  {% if exception %}
+  <h2>{{ exception }}</h2>
+  {% endif %}
+</div>
+{% endblock %}

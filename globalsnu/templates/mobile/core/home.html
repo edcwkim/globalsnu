@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}home-body no-padding{% endblock %}
+{% block content %}
+<div id="home" class="mainland">
+  <div class="navigator-wrapper">
+    <div class="heading">
+      <img src="{% static 'img/home_header_mobile.svg' %}" alt="Find your school. Share your stories.">
+    </div>
+    <div class="description">원하는 조건을 선택하고 당신에게 맞는 대학을 찾아보세요</div>
+    <form action="{% url 'univ:school_filter_search' %}" method="post" class="navigator-form">{% csrf_token %}
+      <fieldset class="selector iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            <li class="mask">대륙<span class="select"> 선택하기</span></li>
+            <li class="objects">
+            {% for code, name in CONTINENTS %}
+              <div class="object">
+                <input id="continent-{{ code }}" name="continent" value="{{ code }}" type="checkbox" data-code="{{ code }}">
+                <label for="continent-{{ code }}"><span></span>{{ name }}</label>
+              </div>
+            {% if forloop.counter|divisibleby:6 %}
+            </li>
+            <li class="objects">
+            {% endif %}
+            {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </fieldset>
+      <fieldset class="selector iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            <li class="mask">국가<span class="select"> 선택하기</span></li>
+            <li class="objects">
+            {% for country in countries %}
+              <div class="object">
+                <input id="country-{{ country.id }}" name="country" value="{{ country.name }}" type="checkbox" data-continent-code="{{ country.continent }}">
+                <label for="country-{{ country.id }}"{% if tag.name|length > 7 %} class="squeeze"{% endif %}><span></span>{{ country.name }}</label>
+              </div>
+            {% if forloop.counter|divisibleby:6 %}
+            </li>
+            <li class="objects">
+            {% endif %}
+            {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </fieldset>
+      <fieldset class="selector iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            <li class="mask">언어<span class="select"> 선택하기</span></li>
+            <li class="objects">
+            {% for tag in language_tags %}
+              <div class="object">
+                <input id="language-{{ tag.id }}" name="language" value="{{ tag.id }}" type="checkbox" data-id="{{ tag.id }}">
+                <label for="language-{{ tag.id }}"{% if tag.name|length > 7 %} class="squeeze"{% endif %}><span></span>{{ tag.name }}</label>
+              </div>
+            {% if forloop.counter|divisibleby:6 %}
+            </li>
+            <li class="objects">
+            {% endif %}
+            {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </fieldset>
+      <fieldset class="selector iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            <li class="mask">전공<span class="select"> 선택하기</span></li>
+            <li class="objects">
+            {% for tag in major_tags %}
+              <div class="object">
+                <input id="major-{{ tag.id }}" name="major" value="{{ tag.id }}" type="checkbox" data-id="{{ tag.id }}">
+                <label for="major-{{ tag.id }}"{% if tag.name|length > 7 %} class="squeeze"{% endif %}><span></span>{{ tag.name }}</label>
+              </div>
+            {% if forloop.counter|divisibleby:6 %}
+            </li>
+            <li class="objects">
+            {% endif %}
+            {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </fieldset>
+      <button class="filter"></button>
+    </form>
+    <div class="or">— 또는 —</div>
+    <div class="search-freely">자유롭게 검색해 보세요</div>
+    <form action="/school/search/" class="search-form">
+      {{ school_search.q }}
+    </form>
+  </div>
+  {% comment %}
+  <div class="event">
+    <h4>겨울방학 이벤트</h4>
+    <div class="event-button">자세히 보기</div>
+  </div>
+  {% endcomment %}
+  <div class="popup event-popup" style="display: none;"></div>
+  <div class="shortcuts">
+    <div class="shortcut schools">
+      <div class="shortcut-header">
+        <img src="{% static 'img/school_white.svg' %}">
+        <h2>최근 편집된 학교</h2>
+        <div class="go"><a href="{% url 'univ:school_list' %}" class="uncolor undecorate">&gt;</a></div>
+      </div>
+      <div class="iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            {% for school in schools %}
+            <li class="object">
+              <a href="{{ school.get_absolute_url }}" class="uncolor undecorate">
+                <div class="logo"{% if school.logo %} style="background-image: url('{{ school.logo.url }}');"{% endif %}></div>
+                <div class="name">{{ school.name }}</div>
+              </a>
+            </li>
+            {% endfor %}
+            <li class="more">
+              <a href="{% url 'univ:school_list' %}" class="uncolor undecorate"><span class="plus">+</span><br>전체 보기</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="shortcut essays">
+      <div class="shortcut-header">
+        <img src="{% static 'img/essay_white.svg' %}">
+        <h2>최근 등록된 수기</h2>
+        <div class="go"><a href="{% url 'wiki:essay_list' %}" class="uncolor undecorate">&gt;</a></div>
+      </div>
+      <div class="iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            {% for essay in essays %}
+            <li class="object">
+              <a href="{{ essay.get_absolute_url }}" class="uncolor undecorate">
+                <div class="school-name">{{ essay.page.title }}</div>
+                <div class="title">{{ essay.title }}</div>
+              </a>
+            </li>
+            {% endfor %}
+            <li class="more">
+              <a href="{% url 'wiki:essay_list' %}" class="uncolor undecorate">
+                <span class="plus">+</span><br>전체 보기</li>
+              </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="shortcut world">
+      <div class="shortcut-header">
+        <img src="{% static 'img/world_white.svg' %}">
+        <h2>SNU in World</h2>
+        <div class="go"><a href="{% url 'univ:snu_in_world' %}" class="uncolor undecorate">&gt;</a></div>
+      </div>
+      <div class="iscroll-wrapper">
+        <div class="iscroll">
+          <ul>
+            <li class="object beijing">
+              <a href="{% url 'univ:snu_in_world_detail' 'beijing' %}" class="uncolor undecorate">
+                <img src="{% static 'img/cities/beijing_mobile.svg' %}"></img>
+                <div class="name">Beijing</div>
+              </a>
+            </li>
+            <li class="object berlin">
+              <a href="{% url 'univ:snu_in_world_detail' 'berlin' %}" class="uncolor undecorate">
+                <img src="{% static 'img/cities/berlin_mobile.svg' %}"></img>
+                <div class="name">Berlin</div>
+              </a>
+            </li>
+            <li class="object madrid">
+              <a href="{% url 'univ:snu_in_world_detail' 'madrid' %}" class="uncolor undecorate">
+                <img src="{% static 'img/cities/madrid_mobile.svg' %}"></img>
+                <div class="name">Madrid</div>
+              </a>
+            </li>
+            <li class="object moscow">
+              <a href="{% url 'univ:snu_in_world_detail' 'moscow' %}" class="uncolor undecorate">
+                <img src="{% static 'img/cities/moscow_mobile.svg' %}"></img>
+                <div class="name">Moscow</div>
+              </a>
+            </li>
+            <li class="object tokyo">
+              <a href="{% url 'univ:snu_in_world_detail' 'tokyo' %}" class="uncolor undecorate">
+                <img src="{% static 'img/cities/tokyo_mobile.svg' %}"></img>
+                <div class="name">Tokyo</div>
+              </a>
+            </li>
+            <li class="object london">
+              <a href="{% url 'univ:snu_in_world_detail' 'london' %}" class="uncolor undecorate">
+                <img src="{% static 'img/cities/london_mobile.svg' %}"></img>
+                <div class="name">London</div>
+              </a>
+            </li>
+            <li class="more">
+              <a href="{% url 'univ:snu_in_world' %}" class="uncolor undecorate">
+                <span class="plus">+</span><br>전체 보기</li>
+              </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="shortcut manual">
+      <a href="{% url 'manual' %}" class="uncolor undecorate">
+        <h2>교환학생 준비가<br>막막하다면</h2>
+        <div class="go">매뉴얼 보기 &gt;</div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

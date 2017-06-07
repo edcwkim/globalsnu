@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="search-wrapper essay recent-list mainland">
+  <div class="container">
+    <div class="heading">
+      <img src="{% static 'img/essay.svg' %}">
+      <h1>최근 등록된 수기</h1>
+    </div>
+    <ul class="result-wrapper">
+      {% for essay in essays %}
+      <a href="{{ essay.get_absolute_url }}" class="uncolor undecorate">
+        <li class="result">
+          <span class="name">{{ essay.page.title }}</span>
+          <span class="separator">|</span>
+          <span class="tag">{{ essay.title }}</span>
+        </li>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

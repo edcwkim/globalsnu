@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load wiki static %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+    <div class="page-tools">
+      <a href="{% url 'wiki:page_update' page.title_for_url %}"><img src="{% static 'img/edit.svg' %}" alt="편집" height="24"></a>
+      <a href="{% url 'wiki:page_update' page.title_for_url %}"><img src="{% static 'img/talk.svg' %}" alt="토론" height="24"></a>
+      <a href="{% url 'wiki:page_history' page.title_for_url %}"><img src="{% static 'img/time.svg' %}" alt="역사" height="24"></a>
+    </div>
+    <div class="tag-wrapper">
+      {% for tag in page.school.tags.all %}
+      <span class="tag">#<span class="name">{{ tag.name }}</span> <span class="remove"></span></span>
+      {% endfor %}
+      <form class="tag-form">
+        <input type="text" class="ac-tag">
+      </form>
+      <span class="trigger">편집</span>
+    </div>
+    <h4>좋아요</h4>
+    <div class="like{% if user_liked %} liked{% endif %}">
+      <span class="thumb"></span>
+      <span class="count">{{ page.school.likes.count }}</span>
+    </div>
+    <h4>당신 별점</h4>
+    <div class="star-wrapper user{% if user_rating %} rated{% endif %}">
+      <span class="star-0">
+      </span><span class="star star-1{% if user_rating >= 1 %} filled{% endif %}">
+      </span><span class="star star-2{% if user_rating >= 2 %} filled{% endif %}">
+      </span><span class="star star-3{% if user_rating >= 3 %} filled{% endif %}">
+      </span><span class="star star-4{% if user_rating >= 4 %} filled{% endif %}">
+      </span><span class="star star-5{% if user_rating >= 5 %} filled{% endif %}">
+      </span>
+    </div>
+    <h4>평균 별점</h4>
+    <div class="star-wrapper average">
+      <span class="star {% if page.school.get_average_rating >= 1 %} filled{% endif %}">
+      </span><span class="star {% if page.school.get_average_rating >= 2 %} filled{% endif %}">
+      </span><span class="star {% if page.school.get_average_rating >= 3 %} filled{% endif %}">
+      </span><span class="star {% if page.school.get_average_rating >= 4 %} filled{% endif %}">
+      </span><span class="star {% if page.school.get_average_rating >= 5 %} filled{% endif %}">
+      </span>
+    </div>
+    <div>{{ page.content|markdown }}</div>
+    <h3>수기</h3>
+    {% if page.essays %}
+    <ul>
+      {% for essay in page.essays.all %}
+      <li><a href="{{ essay.get_absolute_url }}" target="_blank">{{ essay.title }}</a></li>
+      {% endfor %}
+      <li><a href="{% url 'wiki:essay_create' page.title_for_url %}" target="_blank">등록하기</a></li>
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

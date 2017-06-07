@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}no-padding{% endblock %}
+{% block content %}
+<div class="copyright">
+  <div class="container">
+    <div class="logo">
+      <a href="{% url 'home' %}">
+        <img src="{% static 'img/logo_inverse_globe.svg' %}">
+      </a>
+    </div>
+    <h1>저작권</h1>
+    <h2 class="hero-1">글로벌스누는 저작물의 공정한 이용을 지지합니다.</h2>
+    <div class="hero-2">
+      <div class="nutshell col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <h3>요약 – 제가 작성하는 글의 저작권은 어떻게 되나요?</h3>
+        <p><b>위키를 작성하시면</b> <a href="https://creativecommons.org/licenses/by-sa/4.0/">크리에이티브 커먼즈 라이선스</a>가 적용되며 편집자 모두가 저작권을 공유합니다.</p>
+        <p><b>수기를 작성하시면</b> 작성자 본인이 저작권을 소유합니다.</p>
+      </div>
+      <div class="clearfix"></div>
+      <div class="wiki">
+        <h3>위키</h3>
+        <div class="license">
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <img src="{% static 'img/ccl_1.png' %}"><img src="{% static 'img/ccl_2.png' %}"><img src="{% static 'img/ccl_3.png' %}">
+          </a>
+        </div>
+        <p class="title">
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="uncolor">저작자 표시. 동일 조건 변경 허락.</a>
+        </p>
+        <p class="body">글로벌스누의 위키 컨텐츠는 <a href="https://www.wikipedia.org/">위키백과</a>의 컨텐츠와 같은 라이선스를 적용하고 있습니다. 해당 문서의 편집자 모두가 저작권을 공유하며, 글로벌스누는 위키 컨텐츠에 대한 저작권을 소유하지 않습니다. 위키 컨텐츠는 다수의 이용자들이 기여하여 만들어지는 결과물이므로 라이선스의 조건과 주의사항을 존중하여 주시기 바랍니다. 또, 이미지를 사용하실 경우 별도 저작권 표시가 있는지 꼭 확인하여 주시기 바랍니다.</p>
+      </div>
+      <div class="essay">
+        <h3>수기</h3>
+        <p>수기의 저작권은 작성자에게 독점적으로 귀속됩니다. 저작자의 허락 없이 수기를 도용할 경우 발생하는 법적 분쟁에 대하여 글로벌스누는 책임지지 않습니다.</p>
+      </div>
+      <div class="manual">
+        <h3>매뉴얼 및 디자인</h3>
+        <p>홈 화면의 매뉴얼 및 하단에 명시된 저작물을 제외한 모든 사이트 디자인은 글로벌스누가 그 저작권을 소유합니다.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="code">
+      <h3>코드</h3>
+      <p>Powered by&nbsp;<a href="https://www.djangoproject.com/"><img src="{% static 'img/django.svg' %}" alt="Django" class="powered"></a></p>
+      <p>Search by&nbsp;&nbsp;<a href="https://www.elastic.co/"><img src="{% static 'img/elastic.svg' %}" alt="Elastic" class="search"></a></p>
+      <p>Packages: <a href="http://haystacksearch.org/">Haystack</a>, <a href="http://docs.python-requests.org/">Requests</a>, <a href="https://www.crummy.com/software/BeautifulSoup/">Beautiful Soup</a>, <a href="https://pythonhosted.org/Markdown/">Python-Markdown</a>, <a href="https://django-compressor.readthedocs.io/">Django Compressor</a>,
+         <a href="https://github.com/kmike/django-widget-tweaks">django-widget-tweaks</a>, <a href="https://getbootstrap.com/">Bootstrap</a>, <a href="https://jquery.com/">jQuery</a>, <a href="https://github.com/chjj/marked">marked</a>, <a href="https://alex-d.github.io/Trumbowyg/">Trumbowyg</a>, <a href="http://iscrolljs.com/">iScroll</a>
+      </p>
+    </div>
+    <div class="image">
+      <h3>이미지</h3>
+      <p>로고: Icon designed by <a href="https://thenounproject.com/erichgrois/">Erich Grois/Noun Project</a></p>
+      <p>스누인월드: Icons designed by <a href="https://thenounproject.com/hegedus/">József Balázs-Hegedüs/Noun Project</a></p>
+      <p>홈 화면: Poster vector designed by <a href="http://www.freepik.com/free-photos-vectors/poster">Freepik</a></p>
+      <p>소개 화면: Picture by <a href="http://www.huffingtonpost.ca/2015/08/28/beautiful-canadian-universities_n_8011206.html">Arti Patel/Huffington Post</a>, icon designed by by <a href="https://thenounproject.com/bravo/">Juan Pablo Bravo/Noun Project</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block navbar %}{% include 'includes/navbar_public.html' %}{% endblock %}

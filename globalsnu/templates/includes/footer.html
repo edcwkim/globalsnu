@@ -1,0 +1,22 @@
+{% load static %}
+<footer>
+  <div class="container">
+    <a href="{% url 'about' %}#detail" style="outline: none;">
+      <img src="{% static 'img/detail.png' %}" alt="디테일" width="48">
+    </a>
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-2 col-xs-3">
+        <a href="{% url 'about' %}" class="uncolor">소개</a>
+      </div>
+      <div class="col-sm-2 col-xs-3">
+        <a href="{% url 'tos' %}" class="uncolor">이용약관</a>
+      </div>
+      <div class="col-sm-2 col-xs-3">
+        <a href="{% url 'privacy' %}" class="uncolor">개인정보</a>
+      </div>
+      <div class="col-sm-2 col-xs-3">
+        <a href="{% url 'copyright' %}" class="uncolor">저작권</a>
+      </div>
+    </div>
+  </div>
+</footer>

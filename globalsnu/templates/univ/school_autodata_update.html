@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {% include 'includes/form_snippet.html' %}
+    <button class="btn btn-default btn-block" type="submit">수정하기</button>
+  </form>
+</div>
+{% endblock %}

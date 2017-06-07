@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="search-wrapper school recent-list mainland">
+  <div class="container">
+    <div class="heading">
+      <img src="{% static 'img/school.svg' %}">
+      <h1>최근 편집된 학교</h1>
+    </div>
+    <ul class="result-wrapper">
+      {% for school in schools %}
+      <a href="{{ school.get_absolute_url }}" class="uncolor undecorate">
+        <li class="result">
+          <span class="name">{{ school.name }}</span>
+          {% if school.country %}
+          <span class="separator">|</span>
+          <span class="tag">{{ school.country.name }}</span>
+          {% endif %}
+        </li>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

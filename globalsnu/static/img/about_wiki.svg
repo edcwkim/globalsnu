@@ -1,0 +1,14 @@
+<svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64">
+<g transform="translate(0, 0)">
+<polyline data-cap="butt" fill="none" stroke="#ffffff" stroke-width="2" stroke-miterlimit="10" points="44,2 44,14 56,14 " stroke-linejoin="round" stroke-linecap="round"></polyline>
+<polygon fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="44,2 8,2 8,62 
+	56,62 56,14 " stroke-linejoin="round"></polygon>
+<path data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M32,43.672
+	c0-1.208-0.529-2.357-1.476-3.108C29.078,39.416,26.57,38,23,38s-6.078,1.416-7.524,2.564C14.529,41.315,14,42.464,14,43.672V46h18
+	V43.672z" stroke-linejoin="round"></path>
+<circle data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" cx="23" cy="28" r="5" stroke-linejoin="round"></circle>
+<path data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M38,46h12
+	v-2.328c0-1.208-0.529-2.357-1.476-3.108C47.078,39.416,44.57,38,41,38c-1.528,0-2.861,0.259-4,0.646" stroke-linejoin="round"></path>
+<circle data-color="color-2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" cx="41" cy="28" r="5" stroke-linejoin="round"></circle>
+</g>
+</svg>

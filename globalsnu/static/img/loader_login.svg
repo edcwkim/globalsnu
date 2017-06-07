@@ -1,0 +1,6 @@
+<svg class="nc-icon glyph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 48 48">
+<g>
+<circle class="nc-ripples" fill="#014347" cx="24" cy="24" r="24" transform="translate(5.772109174751259 5.772109174751259) scale(0.7594954510520309)" style="opacity:0.9189909021040616;"></circle>
+</g>
+<script>function ripplesStep(t){startRipples||(startRipples=t);var e=t-startRipples,a=Math.min(e/800,1);800&gt;e||(startRipples+=800);if(circleRipples[0]){window.requestAnimationFrame(ripplesStep),scale=.3+5*a/7;if(.3+a&gt;1)(scale=.8+2*(a-.7)/3);scale=Math.min(scale,1),translateX=24*(1-scale),translateY=24*(1-scale),opacity=10*a/7;if(.3+a&gt;1)(opacity=Math.max(1-10/3*(a-.7),0));for(j = 0;  circleRipplesNumber &gt; j ; j++){circleRipples[j].setAttribute("transform","translate("+translateX+" "+translateY+") scale("+scale+")"),circleRipples[j].setAttribute("style","opacity:"+opacity+";")}}}!function(){var t=0;window.requestAnimationFrame||(window.requestAnimationFrame=function(e){var a=(new Date).getTime(),n=Math.max(0,16-(a-t)),r=window.setTimeout(function(){e(a+n)},n);return t=a+n,r})}();var circleRipples=document.getElementsByClassName("nc-ripples"),startRipples=null,circleRipplesNumber = circleRipples.length;window.requestAnimationFrame(ripplesStep);</script>
+</svg>
