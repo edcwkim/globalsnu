@@ -20,10 +20,12 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-fonts/
+MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -38,24 +40,20 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+.nox/
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
 *.cover
+*.py,cover
 .hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
 *.pot
-
-# Django stuff
-/static/
-/media/
-/locale/
-*.log
-prod.py
 
 # Environments
 .env
@@ -63,6 +61,14 @@ prod.py
 env/
 venv/
 ENV/
+env.bak/
+venv.bak/
 
-# Elasticsearch
-elasticsearch/
+# Production
+/.locale
+/.static
+
+# Etc.
+/elasticsearch
+.DS_Store
+db.sqlite3

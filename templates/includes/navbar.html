@@ -1,0 +1,109 @@
+{% load static user_agents %}
+{% if request|is_mobile %}
+<nav class="navbar navbar-default navbar-fixed-top mobile">
+  <div class="container">
+    <div class="row header">
+      <div class="col-xs-3">
+        <div class="hamburger">
+          <div class="hamburger-box">
+            <div class="hamburger-inner"></div>
+          </div>
+        </div>
+      </div>
+      <div class="logo col-xs-6">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'img/logo_nav_mobile.svg' %}" alt="GlobalSNU">
+        </a>
+      </div>
+      <div class="favorites col-xs-3">
+        <a href="{% url 'favorites' %}">
+          <span class="heart"></span>
+        </a>
+      </div>
+    </div>
+    <ul class="row list">
+      <form class="item search" action="/school/search/">
+        <input type="search" name="q" placeholder="검색">
+      </form>
+      <a href="{% url 'manual' %}" class="uncolor undecorate">
+        <li class="item">
+          매뉴얼
+        </li>
+      </a>
+      <a href="{% url 'personal_edits' %}" class="uncolor undecorate">
+        <li class="item">
+          편집내역
+        </li>
+      </a>
+      <a href="{% url 'settings' %}" class="uncolor undecorate">
+        <li class="item">
+          개인정보
+        </li>
+      </a>
+      <a href="{% url 'logout' %}" class="uncolor undecorate">
+        <li class="item">
+          로그아웃
+        </li>
+      </a>
+      <li class="about">
+        <a href="{% url 'about' %}">
+          <img src="{% static 'img/logo_globe.svg' %}">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% else %}
+<nav class="navbar navbar-default navbar-fixed-top desktop">
+  <div class="container">
+    <div class="row">
+      <div class="logo-search col-md-8 col-sm-7 col-xs-6">
+        <a href="{% url 'home' %}" class="logo">
+          <img src="{% static 'img/logo_nav.svg' %}" alt="GlobalSNU">
+        </a>
+        <form class="search" action="/school/search/">
+          <input type="search" name="q" placeholder="검색">
+        </form>
+      </div>
+      <div id="navbar" class="col-md-4 col-sm-5 col-xs-6">
+        <div class="row">
+          <div class="menu left mypage col-xs-6">
+            <a href="{% url 'profile' %}" class="uncolor">
+              <div style="width: 100%; outline: none;">
+                <svg width="48" height="58">
+                  <line x1="0" y1="29.5" x2="29" y2="29.5" />
+                  <circle cx="29.5" cy="29.5" r="4" />
+                </svg>
+                <span>MY PAGE</span>
+              </div>
+            </a>
+            <div id="mypage">
+              <a href="{% url 'favorites' %}">
+                <div class="block first">즐겨찾기</div>
+              </a>
+              <a href="{% url 'personal_edits' %}">
+                <div class="block second">편집내역</div>
+              </a>
+              <a href="{% url 'settings' %}">
+                <div class="block third">개인정보</div>
+              </a>
+              <a href="{% url 'logout' %}">
+                <div class="block fourth">로그아웃</div>
+              </a>
+            </div>
+          </div>
+          <a href="{% url 'home' %}#manual" class="manual uncolor">
+            <div class="menu right col-xs-6">
+              <svg width="48" height="58">
+                <line x1="0" y1="29.5" x2="29" y2="29.5" />
+                <circle cx="29.5" cy="29.5" r="4" />
+              </svg>
+              <span>MANUAL</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endif %}

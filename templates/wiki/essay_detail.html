@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static user_agents wiki %}
+
+{% block body_class %}no-padding-with-nav{% if user_liked %} nav-heart-red{% endif %}{% endblock %}
+{% block content %}
+<div class="essay-detail mainland">
+  <div class="container">
+    <div class="back">
+      <a href="{{ essay.page.get_absolute_url }}">
+        <span></span>
+      </a>
+    </div>
+    <div class="like{% if user_liked %} liked{% endif %}" data-action="{% url 'wiki:essay_like' %}">
+      {% if request|is_mobile %}
+      <span class="plus">+</span>
+      <span class="minus">-</span>
+      {% else %}
+      <span class="heart"></span>
+      {% endif %}
+    </div>
+    {% if essay.page %}
+    {% if essay.page.school.logo %}
+    <div class="logo-wrapper">
+      <a href="{{ essay.page.get_absolute_url }}">
+        <div class="logo" style="background-image: url('{{ essay.page.school.logo.url }}');"></div>
+      </a>
+    </div>
+    {% endif %}
+    <h2 class="page-title">
+      <a href="{{ essay.page.get_absolute_url }}" class="uncolor">
+        {{ essay.page.title }}
+      </a>
+    </h2>
+    {% endif %}
+    <h1>{{ essay.title }}</h1>
+    <div class="content">{{ essay.content|richtext }}</div>
+    {% if user == essay.creator %}
+    <div class="edit">
+      <a href="{% url 'wiki:essay_update' essay.page_title_for_url essay.id %}">
+        <img src="{% static 'img/edit.svg' %}">
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

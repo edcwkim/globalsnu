@@ -1,10 +1,10 @@
-Django < 1.12
+Django ~= 3.1.0
 beautifulsoup4
 django-compressor
 django-haystack
-django-mobile
+django-user-agents
 django-widget-tweaks
-elasticsearch < 3
+elasticsearch ~= 5.0
 lxml
 Markdown
 Pillow
