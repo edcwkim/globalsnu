@@ -43,8 +43,8 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://unpkg.com/marked@1.2.0/marked.min.js"></script>
 {% compress js %}
-<script src="{% static 'js/marked.js' %}"></script>
-<script src="{% static 'js/marked_script.js' %}"></script>
+<script src="{% static 'js/marked.script.js' %}"></script>
 {% endcompress %}
 {% endblock %}

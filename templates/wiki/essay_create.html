@@ -24,30 +24,13 @@
 {% endblock %}
 
 {% block extra_css %}
-{% compress css %}
-<link rel="stylesheet" href="{% static 'css/trumbowyg.css' %}">
-{% endcompress %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/ui/trumbowyg.min.css" integrity="sha512-XjpikIIW1P7jUS8ZWIznGs9KHujZQxhbnEsqMVQ5GBTTRmmJe32+ULipOxFePB8F8j9ahKmCjyJJ22VNEX60yg==" crossorigin="anonymous" />
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/trumbowyg.min.js" integrity="sha512-l6MMck8/SpFCgbJnIEfVsWQ8MaNK/n2ppTiELW3I2BFY5pAm/WjkNHSt+2OD7+CZtygs+jr+dAgzNdjNuCU7kw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.21.0/langs/ko.min.js" integrity="sha512-goFn8Yi/8jmn6oQIDZjzl0M15XOc97Xa+t51zAp+0lMc484fQPwBH26PFJ8TsNYppvs2hlIP3etTdI36//EblQ==" crossorigin="anonymous"></script>
 {% compress js %}
-<script src="{% static 'js/trumbowyg.js' %}"></script>
-<script src="{% static 'js/trumbowyg.ko.js' %}"></script>
-<script>
-$.trumbowyg.svgPath = "{% static 'img/trumbowyg.svg' %}";
-$('textarea').trumbowyg({
-  lang: 'ko',
-  autogrow: true,
-  btns: [
-    ['formatting'],
-    'btnGrp-semantic',
-    'btnGrp-justify',
-    'btnGrp-lists',
-    ['link'],
-    ['removeformat'],
-    ['fullscreen']
-  ]
-});
-</script>
+<script src="{% static 'js/trumbowyg.script.js' %}"></script>
 {% endcompress %}
 {% endblock %}
