@@ -5,8 +5,8 @@ from .models import Page, PageRevision, Essay
 
 class PageCreateForm(forms.ModelForm):
 
-    is_school = forms.BooleanField(label=_("학교입니다."), required=False)
-    is_country = forms.BooleanField(label=_("국가입니다."), required=False)
+    is_school = forms.BooleanField(label=_("학교 문서입니다."), required=False)
+    is_country = forms.BooleanField(label=_("국가 문서입니다."), required=False)
 
     class Meta:
         model = PageRevision
@@ -24,8 +24,8 @@ class PageCreateForm(forms.ModelForm):
 
 class PageUpdateForm(forms.ModelForm):
 
-    is_school = forms.BooleanField(label=_("학교입니다."), required=False)
-    is_country = forms.BooleanField(label=_("국가입니다."), required=False)
+    is_school = forms.BooleanField(label=_("학교 문서입니다."), required=False)
+    is_country = forms.BooleanField(label=_("국가 문서입니다."), required=False)
 
     class Meta:
         model = PageRevision
