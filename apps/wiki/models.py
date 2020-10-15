@@ -156,7 +156,7 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
         if not self.subid:
             aggregate = self.wiki.pages.aggregate(Max('subid'))
-            self.subid = aggregate.get('subid__max', 0) + 1
+            self.subid = (aggregate.get('subid__max') or 0) + 1
 
         self.title_for_url = self.title.replace(' ', '_')
         while not self.has_safe_title_for_url():
